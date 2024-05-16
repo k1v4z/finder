@@ -9,6 +9,7 @@
   "author": "Thao",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "puppeteer": "^22.8.2"
   }
 }
