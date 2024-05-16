@@ -10,6 +10,7 @@ app.use(express.urlencoded({ extended: true })); // for parsing application/x-ww
 app.get('/searching-result', async (req, res) => {
     const searchContent = req.body.search;
     const filePath = `./src/Service/CrawlSendo/data/${searchContent.toLowerCase()}.json`;
+    
     if (fs.existsSync(filePath)) {
         const bestProducts = await getBestProducts(filePath);
         res.json(bestProducts);
