@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 
-const { getBestProducts } = require('./Service/CrawlSendo/DataProcessing.js');
+const { getBestProducts } = require('./src/service/CrawlSendo/DataProcessing.js');
 const fs = require('fs');
 
 app.use(express.json()); // for parsing application/json
@@ -9,7 +9,7 @@ app.use(express.urlencoded({ extended: true })); // for parsing application/x-ww
 
 app.get('/searching-result', async (req, res) => {
     const searchContent = req.body.search;
-    const filePath = `./Service/CrawlSendo/data/${searchContent.toLowerCase()}.json`;
+    const filePath = `./src/Service/CrawlSendo/data/${searchContent.toLowerCase()}.json`;
     if (fs.existsSync(filePath)) {
         const bestProducts = await getBestProducts(filePath);
         res.json(bestProducts);
