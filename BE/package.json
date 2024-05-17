@@ -9,7 +9,12 @@
   "author": "Thao",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.4.5",
     "express": "^4.19.2",
+    "firebase-admin": "^12.1.0",
+    "fs": "^0.0.1-security",
+    "node-cron": "^3.0.3",
     "puppeteer": "^22.9.0"
   },
   "devDependencies": {
