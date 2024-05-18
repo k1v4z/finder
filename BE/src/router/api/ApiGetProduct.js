@@ -1,5 +1,6 @@
 const express = require('express')
 const { getTikiProduct } = require('../../controller/GetProductController')
+const { getSendoProduct } = require('../../controller/GetProductController')
 
 const router = express.Router()
 
@@ -8,4 +9,12 @@ const initApiGetProduct = (app) => {
     app.use('/api/v1/', router)
 }
 
-module.exports = initApiGetProduct
+const getSendoProductApi = (app) => {
+    router.get('/sendo-product', getSendoProduct)
+    app.use('/api/v1/', router)
+}
+
+module.exports = {
+    initApiGetProduct,
+    getSendoProductApi
+}

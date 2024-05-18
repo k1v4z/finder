@@ -6,7 +6,7 @@ function delay(ms) {
 // Launch a browser instance using Puppeteer.
 async function launchBrowser() {
     const browser = await puppeteer.launch({
-        headless: false,
+        headless: true,
         defaultViewport: null, // Add this line
         args: ['--start-maximized'] // Add this line to start browser maximized
     });
@@ -39,7 +39,7 @@ async function createPage(browser) {
  * @returns {Promise<Array>} An array of products scraped from sendo.vn
  * export this function to use in other files
  */
-async function scrape(searchContent) {
+async function scrapeSendo(searchContent) {
     console.log('Starting...');
     const browser = await launchBrowser();
     const page = await createPage(browser);
@@ -48,12 +48,13 @@ async function scrape(searchContent) {
     console.log('Scraping data...');
     const rawProducts = await scrapePage(page);
     console.log('Data has been scraped!');
-    // Process the data to the desired format
-    const products = processProductData(rawProducts);
+    // Process the data to the desired format, take the searchContent as the category
+    const products = processProductData(rawProducts, searchContent);
     sortProducts(products);
     await browser.close();
     return products.slice(0, 3); // Get the top 3 products
 }
+//scrapeSendo('đèn học').then(console.log).catch(console.error);
 // Scroll to the bottom of the product page
 async function scrollToTheBottom(page) {
     await page.evaluate(async () => {
@@ -72,7 +73,7 @@ async function scrollToTheBottom(page) {
 // Scrape the page
 async function scrapePage(page) {
     try {
-        await page.waitForNavigation({waitUntil: 'networkidle0', timeout: 15000})
+        await page.waitForNavigation({waitUntil : 'networkidle0', timeout: 10000});
     } catch {
         await page.reload();
         await delay(1000)
@@ -126,21 +127,19 @@ const productsData = async (page) => {
 const getProductDetails = async (page) => {
     // Wait for the page to load
     await delay(1500);
-    // await page.waitForNavigation({waitUntil: 'networkidle0', timeout: 15000});
     try {
-        // Scroll down the page
-        await page.keyboard.press('PageDown');
+        // // Scroll down the page
+        // await page.keyboard.press('PageDown');
         // Address
         await page.waitForSelector('.e7be-T_5cki', { visible: true, timeout: 5000 });
-        
     } catch {
         // Refresh the page if cannot get those selectors
         await page.reload();
         await delay(1500);
-        await page.keyboard.press('PageDown');
+        //await page.keyboard.press('PageDown');
     }
-    // After press page down, wait for 1000ms
-    await delay(500);
+    // After press page down, wait for 500ms
+    //await delay(500);
     const data = await page.evaluate(() => ({
         // Product image URL (this have to not be null)
         imageURL: document.querySelector('.d7ed-a1ulZz img')?.getAttribute('src') || null,
@@ -165,10 +164,13 @@ const getProductDetails = async (page) => {
     if (data.address === null) {
         return null;
     }
-    return { href: page.url(), ...data, type: 'Sendo' }
+    // Stop the page from loading when scraping is done
+    // Avoid unnecessary requests make the program run slower
+    await page.evaluate(() => {window.stop()})
+    return { href: page.url(), ...data }
 }
 // Preprocess the data
-function processProductData(data) {
+function processProductData(data, category) {
     return data.map(product => {
         return {
             href: product.href ? processHref(product.href) : null, //this is the product detail link (string)
@@ -178,7 +180,9 @@ function processProductData(data) {
             soldCount: product.soldCount ? processSoldCount(product.soldCount) : 0,
             scoreRating: product.scoreRating ? processScoreRating(product.scoreRating) : null, // Null because some product get 0 score
             reviews: product.reviews ? processReviews(product.reviews) : null, // Null because some product's review not available
-            address: product.address ? processAddress(product.address) : null
+            address: product.address ? processAddress(product.address) : null,
+            type: 'Sendo',
+            category: category
         };
     });
 
@@ -223,8 +227,9 @@ function processScoreRating(scoreRating) {
     return parseFloat(scoreRating);
 }
 // just get the number of reviews
-function processReviews(reviews) {
-    return parseInt(reviews.replace(/\D/g, ''));
+function processReviews(rawReviews) {
+    const reviews = parseInt(rawReviews.replace(/\D/g, ''));
+    return reviews == isNaN ? reviews : null;
 }
 /**
  * [shop]\n[address] | [star]
@@ -250,6 +255,7 @@ function sortProducts(products) {
             return a.price - b.price; // Sort by price in ascending order
         }
     });
+    return products;
 }
 
-module.exports = {scrape}
+module.exports = {scrapeSendo}

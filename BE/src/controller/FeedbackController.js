@@ -2,13 +2,21 @@ const feedbackSubmit = require('../service/Feedback/FeedbackService')
 
 
 const submitFeedback = async (req, res) => {
-    const data = [req.body.name, req.body.email, req.body.phone, req.body.satisfy, req.body.message]
-    console.log(data)
+    const data = {
+        name: req.body.name,
+        email: req.body.email,
+        phone: req.body.phone,
+        satisfy: req.body.satisfy,
+        message: req.body.message
+    }
+    //console.log(data)
     try {
         await feedbackSubmit(data)
-        return res.status(200).json({
-            message: 'Feedback submitted successfully'
-        })
+            .then(() => {
+                return res.status(200).json({
+                    message: 'feedback submitted'
+                })
+            })
     }
     catch (error) {
         return res.status(500).json({
