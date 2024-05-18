@@ -2,17 +2,16 @@
 var fs = require('fs')
 
 const readData = () => {
-    fs.readFile('../ProductCrawl.json', function (err) {
-        if (err) return console.log(err)
-
-        console.log("The file was saved!")
-    })
+    const data = fs.readFileSync('ProductCrawl.json','utf8')
+    return data
 }
 
 const writeData = (nameOfProduct) => {
-    fs.writeFile('../ProductCrawl.json',{nameOfProduct: nameOfProduct},function(err){
-        if (err) return console.log(err)
+    fs.writeFileSync('ProductCrawl.json',JSON.stringify({name: nameOfProduct}))
+    console.log("Saved")
+}
 
-        console.log("The file was saved!")
-    })
+module.exports = {
+    writeData,
+    readData
 }
