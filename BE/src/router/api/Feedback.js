@@ -4,6 +4,7 @@ const submitFeedback = require('../../controller/FeedbackController')
 feedbackRouter.post('/feedback-submit', submitFeedback);
 
 const feedbackSubmit = (app) => {
-    app.use('/api/v1/feedback-submit', submitFeedback)
+    feedbackRouter.post('/feedback-submit', submitFeedback)
+    app.use('/api/v1/', feedbackRouter)
 }
 module.exports = feedbackSubmit

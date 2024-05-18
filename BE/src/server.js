@@ -7,7 +7,7 @@ const { scrape } = require('./helper/crawl_sendo');
 const app = express()
 const port = process.env.PORT;
 const localhost = process.env.HOST;
-const initApiGetProduct = require('./router/api/ApiGetProduct');
+const {initApiGetProduct, getSendoProductApi} = require('./router/api/ApiGetProduct');
 const submitFeedback = require('./router/api/Feedback.js');
 const setupCron = require('./service/CronService');
 
@@ -22,6 +22,7 @@ app.use(express.urlencoded({ extended: true }));
 setupCron()
 submitFeedback(app)
 initApiGetProduct(app)
+getSendoProductApi(app)
 
 
 app.listen(port, localhost, () => {

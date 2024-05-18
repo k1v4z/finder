@@ -6,14 +6,15 @@ const Product = require("../../model/Product")
  */
 const sendoProduct = async (name) => {
     const products = []
-
+    console.log(name)
     await Product
         .where('category','==',`${name}`)
+        .where('type','==','Sendo')
         .get()
         .then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 console.log(doc.id, " => ", doc.data())
-                product.push(doc.data())
+                products.push(doc.data())
             })
         })
         .catch((error) => {
