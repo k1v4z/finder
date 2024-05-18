@@ -1,9 +1,8 @@
-const db = require("../../config/Firebase");
-
+const feedbacks = require("../../model/Feedback");
 const feedbackSubmit = async (feedbackData) => {
     try {
         //save feedback to database
-        const docRef = await db.collection('feedbacks').add(feedbackData);
+        const docRef = await feedbacks.add(feedbackData);
         console.log("Document written with ID: ", docRef.id);
     } catch (error) {
         console.error("Error adding document: ", error);

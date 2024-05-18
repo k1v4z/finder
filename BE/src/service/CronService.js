@@ -1,6 +1,6 @@
 const cron = require('node-cron');
 const { readData } = require('./JsonFileService');
-const { merge } = require('../helper/craw_tiki');
+const { merge } = require('../helper/crawl_tiki.js');
 const setProduct = require('./CrawlTiKi/SetTikiProduct');
 
 const crawl = async (name) => {

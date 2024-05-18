@@ -7,15 +7,15 @@ const app = express()
 const port = process.env.PORT;
 const localhost = process.env.HOST;
 const initApiGetProduct = require('./router/api/ApiGetProduct');
-const feedbackRouter = require('./router/api/Feedback.js');
+const submitFeedback = require('./router/api/Feedback.js');
 const setupCron = require('./service/CronService');
 
 //config req.body
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/api/feedback', feedbackRouter);
 setupCron()
+submitFeedback(app)
 initApiGetProduct(app)
 
 app.listen(port, localhost, () => {
