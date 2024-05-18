@@ -7,6 +7,13 @@
     font-family: 'Poppins', sans-serif;
 }
 
+.card img.logo {
+    width: 100px;
+    height: 50px;
+    object-fit: contain;
+    margin: 10px auto;
+}
+
 body {
     background-color: rgb(242, 224, 224);
     overflow-x: hidden; /* Prevents horizontal scrolling */

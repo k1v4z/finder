@@ -5,7 +5,7 @@ const getTikiProduct = async (req, res) => {
 
     const product = await tikiProduct(name)
     
-    if(product == []){ //if don't have data in database, save to file and craw later
+    if(product == []){ //if don't have data in database, save to file and crawl later
         
     }
 
@@ -17,6 +17,7 @@ const getTikiProduct = async (req, res) => {
         })
     }
 }
+
 
 module.exports = {
     getTikiProduct
