@@ -3,7 +3,6 @@ const { writeData, readData } = require("../service/JsonFileService");
 
 const getTikiProduct = async (req, res) => {
     const name = req.query.name
-
     const product = await tikiProduct(name)
     const nameOfProduct = readData()
 
