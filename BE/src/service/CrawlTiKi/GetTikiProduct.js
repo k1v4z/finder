@@ -2,9 +2,9 @@ const Product = require("../../model/Product")
 
 const tikiProduct = async (name) => {
     const product = []
-    console.log(name)
     await Product
-        .where('name','==',`${name}`)
+        .where('type','==',`Tiki`)
+        .where('products_name','==',`${name}`) //where clause for the 'AND' condition
         .get()
         .then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
