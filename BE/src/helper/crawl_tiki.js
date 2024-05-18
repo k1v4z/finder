@@ -34,7 +34,14 @@ async function craw(nameOfProduct) {
                 image = image.split(',');
                 image[0] = image[0].split(" ")[0];
                 image[1] = image[1].split(" ")[1];
-                return { name: name.innerText, url: url, price: price, image: image[1], type: 'Tiki' };
+                return {
+                    name: name.innerText,
+                    url: url,
+                    price: price,
+                    image: image[1],
+                    type: 'Tiki',
+                    products_name: nameOfProduct
+                };
             });
         });
         for (i = 0; i < articles.length; i++) {
