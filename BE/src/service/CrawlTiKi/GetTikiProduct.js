@@ -2,9 +2,9 @@ const Product = require("../../model/Product")
 
 const tikiProduct = async (name) => {
     const product = []
-
+    console.log(name)
     await Product
-        .where('category','==',`${name}`)
+        .where('name','==',`${name}`)
         .get()
         .then((querySnapshot) => {
             querySnapshot.forEach((doc) => {

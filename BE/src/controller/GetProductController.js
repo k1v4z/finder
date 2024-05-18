@@ -1,12 +1,23 @@
 const tikiProduct = require("../service/CrawlTiKi/GetTikiProduct");
+const { writeData, readData } = require("../service/JsonFileService");
 
 const getTikiProduct = async (req, res) => {
     const name = req.query.name
 
     const product = await tikiProduct(name)
-    
-    if(product == []){ //if don't have data in database, save to file and crawl later
-        
+    const nameOfProduct = readData()
+
+    if(product.length == 0){
+        //write name of product don't exist in database
+        if (nameOfProduct == '') {
+            const temp = []
+            temp.push(name)
+            writeData(temp)
+        } else {
+            const temp = JSON.parse(nameOfProduct).name
+            temp.push(name) //push new value into exist array
+            writeData(temp) //over write with new value
+        }
     }
 
     try {
