@@ -14,7 +14,7 @@ const setupCron = require('./service/CronService');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-
+app.use('/api/feedback', feedbackRouter);
 setupCron()
 initApiGetProduct(app)
 
