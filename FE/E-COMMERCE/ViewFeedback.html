@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hiển thị đánh giá</title>
+    <!-- Link to Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e8f5e9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .danh-gia {
+            border-bottom: 1px solid #ccc;
+            padding: 20px 0;
+        }
+
+        .danh-gia:last-child {
+            border-bottom: none;
+        }
+
+        .danh-gia__tieu-de {
+            font-size: 1.5em;
+            color: #388e3c;
+            margin-bottom: 10px;
+        }
+
+        .danh-gia__noi-dung {
+            font-size: 1em;
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .danh-gia__diem {
+            font-weight: bold;
+            color: #d32f2f;
+            display: flex;
+            align-items: center;
+        }
+
+        .danh-gia__ngay-thang-nam {
+            font-style: italic;
+            color: #777;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1em;
+            color: #fff;
+            background-color: #388e3c;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: #2e7d32;
+        }
+
+        .icon {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="danh-gia">
+            <h2 class="danh-gia__tieu-de"><i class="fas fa-star icon"></i>Đánh giá #2</h2>
+            <p class="danh-gia__noi-dung"><i class="fas fa-comment icon"></i>Không hài lòng lắm:(</p>
+            <p class="danh-gia__diem"><i class="fas fa-star-half-alt icon"></i>2/5</p>
+            <p class="danh-gia__ngay-thang-nam"><i class="fas fa-calendar-alt icon"></i>2023-04-18T20:55:36Z</p>
+        </div>
+
+        <div class="danh-gia">
+            <h2 class="danh-gia__tieu-de"><i class="fas fa-star icon"></i>Đánh giá khác</h2>
+            <p class="danh-gia__noi-dung"><i class="fas fa-comment icon"></i>Tạm ổn.</p>
+            <p class="danh-gia__diem"><i class="fas fa-star-half-alt icon"></i>N/A</p>
+            <p class="danh-gia__ngay-thang-nam"><i class="fas fa-calendar-alt icon"></i>2023-04-18T20:55:36Z</p>
+        </div>
+
+        <div class="danh-gia">
+            <h2 class="danh-gia__tieu-de"><i class="fas fa-star icon"></i>Đánh giá PM</h2>
+            <p class="danh-gia__noi-dung"><i class="fas fa-comment icon"></i>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <p class="danh-gia__diem"><i class="fas fa-star-half-alt icon"></i>5/5</p>
+            <p class="danh-gia__ngay-thang-nam"><i class="fas fa-calendar-alt icon"></i>2023-04-18T20:55:36Z</p>
+        </div>
+
+        <div class="danh-gia">
+            <h2 class="danh-gia__tieu-de"><i class="fas fa-star icon"></i>Đánh giá 4/11</h2>
+            <p class="danh-gia__noi-dung"><i class="fas fa-comment icon"></i>N/A</p>
+            <p class="danh-gia__diem"><i class="fas fa-star-half-alt icon"></i>4/11</p>
+            <p class="danh-gia__ngay-thang-nam"><i class="fas fa-calendar-alt icon"></i>2023-04-18T20:55:36Z</p>
+        </div>
+
+        <a class="btn" href="./Product.html" role="button"><i class="fas fa-arrow-left icon"></i>Back</a>
+    </div>
+</body>
+</html>

@@ -103,7 +103,6 @@ function readData(filePath) {
         console.log('Creating a new file ' + filePath);
         return [];
     }
-
 }
 // Save the data to a JSON file
 function saveData(newProducts, fileName) {

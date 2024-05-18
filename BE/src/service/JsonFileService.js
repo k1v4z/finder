@@ -1,5 +1,5 @@
 //This service regarding write,read and delete data in json file
-var fs = require('fs')
+const fs = require('fs')
 
 const readData = () => {
     const data = fs.readFileSync('ProductCrawl.json','utf8')

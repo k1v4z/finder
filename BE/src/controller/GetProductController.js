@@ -29,6 +29,7 @@ const getTikiProduct = async (req, res) => {
     }
 }
 
+
 module.exports = {
     getTikiProduct
 }
