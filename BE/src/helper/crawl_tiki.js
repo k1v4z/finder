@@ -39,8 +39,7 @@ async function craw(nameOfProduct) {
                     url: url,
                     price: price,
                     image: image[1],
-                    type: 'Tiki',
-                    products_name: nameOfProduct
+                    type: 'Tiki'
                 };
             });
         });
@@ -80,6 +79,7 @@ async function merge(nameOfProduct) { //merge price,score rating with product
             })
 
             //preprocess data
+            productTiki[i].products_name = nameOfProduct;
             productTiki[i].price = Number(productTiki[i].price.replace(/[₫.]/g, ''));
             productTiki[i].score_rating = Number(detail.scoreRating)
             productTiki[i].soldCount = detail.soldCount != null ? Number(detail.soldCount.replace('Đã bán ', '')) : null
@@ -90,37 +90,22 @@ async function merge(nameOfProduct) { //merge price,score rating with product
 
     await browser.close();
     //sort array product
-    productTiki.sort(compare)
+    sortProducts(productTiki)
 
     return [productTiki[0], productTiki[1], productTiki[2]]
 }
 
-function compare(a, b) {
-    if (a.score_rating > b.score_rating) {
-        return -1;
-    }
-    if (a.score_rating < b.score_rating) {
-        return 1;
-    }
-
-    // Nếu đánh giá bằng nhau, so sánh theo giá (price) tăng dần
-    if (a.price < b.price) {
-        return -1;
-    }
-    if (a.price > b.price) {
-        return 1;
-    }
-
-    // Nếu giá bằng nhau, so sánh theo số lượng đã bán (soldCount) giảm dần
-    if (a.soldCount > b.soldCount) {
-        return -1;
-    }
-    if (a.soldCount < b.soldCount) {
-        return 1;
-    }
-
-    // Nếu cả ba tiêu chí đều bằng nhau, giữ nguyên thứ tự
-    return 0;
+function sortProducts(products) {
+    products.sort(function (a, b) {
+        if (a.soldCount !== b.soldCount) {
+            return b.soldCount - a.soldCount; // Sort by soldCount in descending order
+        } else if (a.scoreRating !== b.scoreRating) {
+            return b.scoreRating - a.scoreRating; // Sort by score_rating in descending order
+        } else {
+            return a.price - b.price; // Sort by price in ascending order
+        }
+    });
+    return products;
 }
 
 async function clickSortItem(page) {

@@ -73,7 +73,7 @@ async function scrollToTheBottom(page) {
 // Scrape the page
 async function scrapePage(page) {
     try {
-        await page.waitForNavigation({waitUntil : 'networkidle0', timeout: 10000});
+        await page.waitForNavigation({ waitUntil: 'networkidle0', timeout: 10000 });
     } catch {
         await page.reload();
         await delay(1000)
@@ -113,7 +113,7 @@ const productsData = async (page) => {
     let products = []
     // Then, go to each href to scrape product details
     for (let href of hrefs) {
-        await page.goto(href.split('html')[0] + 'html');
+        await page.goto(href.split('html')[0] + 'html', { timeout: 0 });
         let productDetail = await getProductDetails(page)
         console.log(productDetail)
         if (productDetail !== null) {
@@ -166,7 +166,7 @@ const getProductDetails = async (page) => {
     }
     // Stop the page from loading when scraping is done
     // Avoid unnecessary requests make the program run slower
-    await page.evaluate(() => {window.stop()})
+    await page.evaluate(() => { window.stop() })
     return { href: page.url(), ...data }
 }
 // Preprocess the data
@@ -258,4 +258,4 @@ function sortProducts(products) {
     return products;
 }
 
-module.exports = {scrapeSendo}
+module.exports = { scrapeSendo }
