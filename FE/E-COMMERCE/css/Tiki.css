@@ -9,6 +9,12 @@
     font-family: "Poppins", sans-serif;
 }
 
+.t-op-nextlvl {
+    width: 300px; /* Adjust to the desired width */
+    word-wrap: break-word; /* Break long words if needed */
+    white-space: normal; /* Allow text to wrap */
+}
+
 :root {
     --background-color1: #fafaff;
     --background-color2: #ffffff;
@@ -342,7 +348,10 @@ header {
 .items {
     width: 1120px;
     margin-top: 15px;
+    cursor: pointer;
 }
+
+
 
 .item1 {
     margin-top: 20px;
@@ -360,4 +369,68 @@ header {
     background-color: rgb(0, 177, 0);
     color: white;
     border-radius: 4px;
+}
+.items .item1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.product-info {
+    display: flex;
+    align-items: center;
+}
+
+.product-img {
+    height: 100px;
+    width: 100px;
+    margin-right: 10px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+.t-op-nextlvl {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.label-tag {
+    width: 100px;
+    text-align: center;
+    background-color: rgb(0, 177, 0);
+    color: white;
+    border-radius: 4px;
+}
+button { 
+	background-color: #368b44; 
+	color: #fff; 
+	padding: 10px; 
+	border: none; 
+	border-radius: 25px; 
+	cursor: pointer; 
+	width: 100%; 
+	font-size: 15px; 
+	transition: .2s linear; 
+} 
+
+a:hover { 
+	background-color: #41060d; 
+	border: none; 
+	transform: translateY(-10px); 
+} 
+
+h1 { 
+	color: green; 
+}
+.btn {
+	display: inline-block;
+	padding: 10px 20px;
+	font-size: 1em;
+	color: #fff;
+	background-color: #388e3c;
+	border: none;
+	border-radius: 5px;
+	text-decoration: none;
+	text-align: center;
 }
