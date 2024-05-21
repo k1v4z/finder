@@ -330,11 +330,12 @@ header {
     max-width: 1160px;
     overflow-x: auto;
     padding: 20px;
+    margin: 0 auto;
 }
 
 .report-topic-heading,
 .item1 {
-    width: 1120px;
+    width: 100%px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -342,11 +343,15 @@ header {
 
 .t-op {
     font-size: 18px;
+    margin-left: 100px;
     letter-spacing: 0px;
+    flex-basis: 33%; /* Ensure each column takes 1/3 of the space */
+    text-align: center; /* Center align the text */
+    text-align: center; /* Center align the text */
 }
 
 .items {
-    width: 1120px;
+    width: 100%;
     margin-top: 15px;
     cursor: pointer;
 }
@@ -380,6 +385,11 @@ header {
 .product-info {
     display: flex;
     align-items: center;
+    flex-basis: 33%; /* Ensure each column takes 1/3 of the space */
+    justify-content: center; /* Center align the product info */
+    overflow-wrap: break-word; /* Allow text to wrap to next line */
+    word-break: break-word; /* Ensure words break properly */
+    white-space: normal; /* Allow normal white-space behavior for wrapping */
 }
 
 .product-img {
@@ -417,7 +427,6 @@ button {
 a:hover { 
 	background-color: #41060d; 
 	border: none; 
-	transform: translateY(-10px); 
 } 
 
 h1 { 
