@@ -1,5 +1,5 @@
 const cron = require('node-cron');
-const { readData } = require('./JsonFileService');
+const { readData, clearData } = require('./JsonFileService');
 const { merge } = require('../helper/crawl_tiki.js');
 const setProduct = require('./CrawlTiKi/SetTikiProduct');
 const { scrapeSendo } = require('../helper/crawl_sendo.js');
@@ -34,14 +34,18 @@ async function crawlAllData(names) {
         const name = names[i];
         await crawlTiki(name)
         await crawlSendo(name)
+
         // await Promise.all([crawlTiki(name),crawlSendo(name)])
         // .catch(err => console.log(err))
     }
+
+    //after crawl finish delete all 
+    clearData()
 }
 
 
 const setupCron = () => {
-    cron.schedule('57 20 * * *', () => { //crawling data at 11h PM every day
+    cron.schedule('32 08 * * *', () => { //crawling data at 11h PM every day
         const names = getProductCrawl() //name of product must crawl
         crawlAllData(names)
     })
