@@ -33,20 +33,6 @@ const getSendoProduct = async (req, res) => {
     const name = req.query.name
     //console.log(name)
     const product = await sendoProduct(name)
-    const nameOfProduct = readData()
-
-    if(product.length == 0){
-        //write name of product don't exist in database
-        if (nameOfProduct == '') {
-            const temp = []
-            temp.push(name)
-            writeData(temp)
-        } else {
-            const temp = JSON.parse(nameOfProduct).name
-            temp.push(name) //push new value into exist array
-            writeData(temp) //over write with new value
-        }
-    }
 
     try {
         return res.status(200).json(product)
