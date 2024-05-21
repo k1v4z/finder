@@ -4,7 +4,7 @@ const tikiProduct = require('../service/CrawlTiKi/GetTikiProduct');
 async function craw(nameOfProduct) {
     const product = [];
     //open browser
-    const browser = await puppeteer.launch({ headless: true });
+    const browser = await puppeteer.launch({ headless: false });
     const page = await browser.newPage();
     await page.goto('https://tiki.vn/');
     await page.type('[data-view-id="main_search_form_input"]', nameOfProduct); //input name of product

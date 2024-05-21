@@ -6,7 +6,7 @@ function delay(ms) {
 // Launch a browser instance using Puppeteer.
 async function launchBrowser() {
     const browser = await puppeteer.launch({
-        headless: true,
+        headless: false,
         defaultViewport: null, // Add this line
         args: ['--start-maximized'] // Add this line to start browser maximized
     });
