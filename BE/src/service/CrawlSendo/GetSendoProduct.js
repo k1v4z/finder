@@ -13,7 +13,6 @@ const sendoProduct = async (name) => {
         .get()
         .then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-                console.log(doc.id, " => ", doc.data())
                 products.push(doc.data())
             })
         })
