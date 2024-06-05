@@ -7,8 +7,8 @@ const { scrapeSendo } = require('../helper/crawl_sendo.js');
 const crawlTiki = async (name) => {
     console.log(`Start Tiki Crawling ${name}`)
     const data = await merge(name)
-    
-    for(product of data){
+
+    for (product of data) {
         await setProduct(product)
     }
 }
@@ -17,7 +17,7 @@ const crawlSendo = async (name) => {
     console.log(`Start Sendo Crawling ${name}`)
     const products = await scrapeSendo(name)
 
-    for(product of products){
+    for (product of products) {
         await setProduct(product)
     }
 
@@ -45,7 +45,7 @@ async function crawlAllData(names) {
 
 
 const setupCron = () => {
-    cron.schedule('32 08 * * *', () => { //crawling data at 11h PM every day
+    cron.schedule('00 11 * * *', () => { //crawling data at 11h PM every day
         const names = getProductCrawl() //name of product must crawl
         crawlAllData(names)
     })
