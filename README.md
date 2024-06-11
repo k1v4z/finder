@@ -29,5 +29,9 @@ This project is designed to crawl product data from Lazada and Sendo, process th
 # ▶️ Run
 - Run command: `npm run dev`
 - Open `Finder.html` and `Open with Live Server`
+# Test
+- Home <img align="center" src="./images/images.png/"/>
+- Show best product <img align="center" src="./images/images2.png/"/>
+- List product <img align="center" src="./images/images3.png/"/>
 # 📜 License
 This project is licensed under the MIT License - see the LICENSE file for details.
